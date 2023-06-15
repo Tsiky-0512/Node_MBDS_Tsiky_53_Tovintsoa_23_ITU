@@ -3,10 +3,10 @@ const router = express.Router();
 const assignmentController = require("../controller/assignementController");
 const auth = require("../security/auth.js");
 
-router.get("/" ,assignmentController.getAssignment);
+router.get("/" ,assignmentController.getAssignments);
 router.post("/" ,assignmentController.postAssignment);
 router.put("/" ,assignmentController.updateAssignment);
-router.put("/:id" ,assignmentController.getAssignment);
-router.put("/:id" ,assignmentController.deleteAssignment);
+router.get("/:id" ,assignmentController.getAssignment);
+router.delete("/:id" ,assignmentController.deleteAssignment);
 
 module.exports = router;

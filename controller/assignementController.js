@@ -62,12 +62,12 @@ function updateAssignment(req, res) {
     console.log("UPDATE recu assignment : ");
     console.log(req.body);
 
-    Assignment.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, assignment) => {
+    Assignment.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, assignmentUpdated) => {
         if (err) {
             console.log(err);
             res.send(err)
         } else {
-            res.json({ message: assignment.nom + 'updated' })
+            res.json({ message: assignmentUpdated?.nom + 'updated' })
         }
 
         // console.log('updated ', assignment)
