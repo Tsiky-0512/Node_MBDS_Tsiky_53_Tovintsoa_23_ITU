@@ -1,30 +1,15 @@
-let express = require('express');
-let app = express();
-let bodyParser = require('body-parser');
-let assignment = require('./routes/assignments');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const assignementRoutes = require("./routes/assignementRoute");
+const { initDatabase } = require('./database/databaseConnector');
 
-let mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-//mongoose.set('debug', true);
 
-// remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
-const uri = 'mongodb+srv://mb:toto@cluster0.5e6cs7n.mongodb.net/assignments?retryWrites=true&w=majority';
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify:false
-};
+// initialiser la connexion sur le base de donnée
+initDatabase();
 
-mongoose.connect(uri, options)
-  .then(() => {
-    console.log("Connecté à la base MongoDB assignments dans le cloud !");
-    console.log("at URI = " + uri);
-    console.log("vérifiez with http://localhost:8010/api/assignments que cela fonctionne")
-    },
-    err => {
-      console.log('Erreur de connexion: ', err);
-    });
+// Importation des Routes
 
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
@@ -43,14 +28,7 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
-app.route(prefix + '/assignments')
-  .get(assignment.getAssignments)
-  .post(assignment.postAssignment)
-  .put(assignment.updateAssignment);
-
-app.route(prefix + '/assignments/:id')
-  .get(assignment.getAssignment)
-  .delete(assignment.deleteAssignment);
+app.use(`${prefix}/assignments`,assignementRoutes)
   
 
 // On démarre le serveur
