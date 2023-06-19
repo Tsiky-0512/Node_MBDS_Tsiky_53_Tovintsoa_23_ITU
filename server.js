@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const assignementRoutes = require("./routes/assignementRoute");
 const authRoutes = require("./routes/authRoute");
+const matiereRoutes = require('./routes/matiereRoute');
 const { initDatabase } = require('./database/databaseConnector');
 
 
@@ -29,8 +30,9 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
-app.use(`${prefix}/assignments`,assignementRoutes)
-app.use(`${prefix}/auth`,authRoutes)
+app.use(`${prefix}/assignments`,assignementRoutes);
+app.use(`${prefix}/matiere`,matiereRoutes);
+app.use(`${prefix}/auth`,authRoutes);
   
 
 // On démarre le serveur
