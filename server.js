@@ -33,6 +33,11 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
+
+app.get('/',(req,res) => {
+  res.send('Hello world');
+})
+
 app.use(`${prefix}/assignments`,assignementRoutes);
 app.use(`${prefix}/matiere`,matiereRoutes);
 app.use(`${prefix}/auteur`,auteurRoutes);

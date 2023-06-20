@@ -28,9 +28,16 @@ function getAssignments(req, res) {
                 });
             }
             const result = await assignementService.getDetailsAssignementsList(assignments?.docs);
-
+            console.log(result);
+            const response = {
+                data:result ,
+                totalDocs : assignments?.totalDocs || 0,
+                limit: assignments?.limit || 0,
+                page: assignments?.page || 0,
+                totalPages: assignments?.totalPages || 0,
+            }
             res.send({
-                data:result,
+                ...response,
                 status:200
             });
         }
