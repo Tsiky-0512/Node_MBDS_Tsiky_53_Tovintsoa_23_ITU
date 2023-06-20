@@ -94,7 +94,7 @@ function deleteAuteur(id) {
 
 
 function getMulterAuteur() {
-    const path = './img/auteur';
+    const path = './public/img/auteur';
 
     if (!fs.existsSync(path)) {
         fs.mkdirSync(path, { recursive: true })
