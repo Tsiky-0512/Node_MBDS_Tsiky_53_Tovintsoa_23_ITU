@@ -47,9 +47,37 @@ node server.js
 
 L'application sera alors exécutée et sera accessible à l'adresse `http://localhost:8010` dans votre navigateur.
 
-## API 
-| URL        | Type  | Déscription  |
+## API Authentification
+| URL        | Déscription   | Type  |
 | ------|-----|-----|
 | [http://localhost:8010/api/auth/login](http://localhost:8010/api/auth/login)	| Authentification	| POST
+| [http://localhost:8010/api/auth](http://localhost:8010/api/auth)	| Ajout user	| POST
+
+## API Assignement
+| URL        | Déscription   | Type  |
+| ------|-----|-----|
+| [http://localhost:8010/api/assignments](http://localhost:8010/api/assignments)	| Enregistré un assignement	| POST
+| [http://localhost:8010/api/assignments](http://localhost:8010/api/assignments)	| Liste assignement	| GET
+| [http://localhost:8010/api/assignments](http://localhost:8010/api/assignments)	| Modification assignement	| PUT
+| [http://localhost:8010/api/assignments/{id}](http://localhost:8010/api/assignments/{id})	| Effacer assignement	| DELETE
+| [http://localhost:8010/api/assignments/{id}](http://localhost:8010/api/assignments/{id})	| Rechercher par id d'un assignement| GET
+
+## API Matiere
+| URL        | Déscription   | Type  |
+| ------|-----|-----|
+| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Enregistré une Matiere	| POST
+| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Liste  Matiere	| GET
+| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Modification d'une Matiere	| PUT
+| [http://localhost:8010/api/matiere/{id}](http://localhost:8010/api/matiere/{id})	| Effacer une Matiere	| DELETE
+
+
+## API AUteur
+| URL        | Déscription   | Type  |
+| ------|-----|-----|
+| [http://localhost:8010/api/auteur](http://localhost:8010/api/auteur)	| Enregistré un auteur	| POST
+| [http://localhost:8010/api/auteur](http://localhost:8010/api/auteur)	| Liste auteur	| GET
+| [http://localhost:8010/api/auteur](http://localhost:8010/api/auteur)	| Modification d'un auteur	| PUT
+| [http://localhost:8010/api/auteur/{id}](http://localhost:8010/api/auteur/{id})	| Effacer un auteur	| DELETE
+
 
 Pour plus d'informations sur l'utilisation de l'application et les fonctionnalités disponibles, veuillez vous référer à la documentation fournie.
