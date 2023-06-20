@@ -37,11 +37,11 @@ function saveMatiere(matiereBody) {
     matiere.nom = matiereBody.nom;
     matiere.nomProf = matiereBody.nomProf;
     return new Promise((resolve,reject) => {
-        matiere.save((err) => {
+        matiere.save((err,matiere) => {
             if (err) {
                 reject(`cant save matiere ${err}`, );
             }
-            resolve(`${matiere.nom} saved!`);
+            resolve(matiere);
         })
     })
 }
