@@ -92,5 +92,21 @@ const deleteAuteur = async (req,res) => {
     }
 }
 
+const uploadAuteurImage = (req, res) => {
+    if (req.file) {
+        const file = req.file;
+        const idAuteur = req.query.id;
 
-module.exports = { getAuteurs, getAuteursPaginate, getAuteurById, saveAuteur, updateAuteur , deleteAuteur};
+        // Le fichier est accessible via req.file
+        console.log('Uploaded file:', file);
+      
+        auteurService.uploadImageAuteur(file,idAuteur);
+
+        res.json({ status: 200, data: "success upload!" }); // Réponse OK
+      } else {
+        res.status(400).json({ status: 400, data: "No file uploaded!" });
+      }
+};
+
+
+module.exports = { getAuteurs, getAuteursPaginate, getAuteurById, saveAuteur, updateAuteur , deleteAuteur , uploadAuteurImage};

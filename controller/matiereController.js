@@ -33,8 +33,6 @@ const getMatiereById = async (req, res) => {
 
 const saveMatiere = async (req, res) => {
     try {
-        console.log("ATO");
-
         const user = await userService.saveMatiere(req.body);
         res.status(200).json({
             data:user,
@@ -79,5 +77,40 @@ const deleteMatiere = async (req,res) => {
     }
 }
 
+const uploadMatiereImage = (req, res) => {
+    if (req.file) {
+        const file = req.file;
+        const idMatiere = req.query.id;
 
-module.exports = { getMatiere, getMatiereById, saveMatiere, updateMatiere, deleteMatiere };
+        // Le fichier est accessible via req.file
+        console.log('Uploaded file:', file);
+      
+        userService.uploadImageMatiere(file,idMatiere);
+
+        res.json({ status: 200, data: "success upload!" }); // Réponse OK
+      } else {
+        res.status(400).json({ status: 400, data: "No file uploaded!" });
+      }
+};
+
+
+const uploadProfImage = (req, res) => {
+    if (req.file) {
+        const file = req.file;
+        const idProfesseur = req.query.id;
+
+        // Le fichier est accessible via req.file
+        console.log('Uploaded file:', file);
+      
+        userService.uploadImageProfesseur(file,idProfesseur);
+
+        res.json({ status: 200, data: "success upload!" }); // Réponse OK
+      } else {
+        res.status(400).json({ status: 400, data: "No file uploaded!" });
+      }
+};
+
+
+
+
+module.exports = { getMatiere, getMatiereById, saveMatiere, updateMatiere, deleteMatiere ,uploadMatiereImage ,uploadProfImage  };

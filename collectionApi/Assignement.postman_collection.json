@@ -73,7 +73,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\":\"1\",\r\n    \"nom\":\"Devoir de maison\",\r\n    \"dateDeRendu\":\"12/02/2023\",\r\n    \"rendu\": true\r\n}",
+							"raw": "{\r\n    \"id\":\"1\",\r\n    \"nom\":\"Examen be\",\r\n    \"matiereId\":\"649114ca71980b6cb4c37793\",\r\n    \"auteurId\":\"649114a971980b6cb4c3778b\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -160,13 +160,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/assignments/1",
+							"raw": "{{BASE_URL}}api/assignments/649115d113b44886181b7cfc",
 							"host": [
 								"{{BASE_URL}}api"
 							],
 							"path": [
 								"assignments",
-								"1"
+								"649115d113b44886181b7cfc"
 							]
 						}
 					},
@@ -194,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nom\":\"Grails\",\r\n    \"prof\":{\r\n        \"nom\":\"Buffa\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"nom\":\"JEE\",\r\n    \"nomProf\":\"Buffa\",\r\n    \"photoProf\":\"test\",\r\n    \"image\":\"huhu\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -257,7 +257,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"_id\":\"64904af32bd8762428d72933\",\r\n    \"prof\":{\r\n        \"nom\":\"test\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"_id\":\"6491fcccd8c4ab6798c4b91f\",\r\n    \"nomProf\":\"Tahiana\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,6 +299,100 @@
 							"path": [
 								"matiere",
 								"64904af32bd8762428d72933"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload Image Matiere",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Peabody/Downloads/352135994_977870390333223_4350608451207418315_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}api/matiere/uploadImageProf?id=6491fcc9d8c4ab6798c4b91d",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"matiere",
+								"uploadImageProf"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6491fcc9d8c4ab6798c4b91d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image Professeur",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Peabody/Downloads/352135994_977870390333223_4350608451207418315_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}api/matiere/uploadImageMatiere?id=6491fcc9d8c4ab6798c4b91d",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"matiere",
+								"uploadImageMatiere"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6491fcc9d8c4ab6798c4b91d"
+								}
 							]
 						}
 					},
@@ -353,7 +447,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nom\":\"Tovintsoa\",\r\n    \"image\":\"test\"\r\n}",
+							"raw": "{\r\n    \"nom\":\"Richard\",\r\n    \"image\":\"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -466,7 +560,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Auteur Paginate",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -489,6 +583,50 @@
 								"auteur",
 								"paginate",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image Auteur",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Peabody/Downloads/351746928_600797698784969_5258753667028853805_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}api/auteur/upload?id=649114a971980b6cb4c3778b",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"auteur",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "649114a971980b6cb4c3778b"
+								}
 							]
 						}
 					},
@@ -525,7 +663,7 @@
 		},
 		{
 			"key": "jwt_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODcxNzcwNDAsImV4cCI6MTY4NzI2MzQ0MH0.93k_LK5s7H7DN623s8UdrG8dU4SUuICzpBjwVpUqf_0",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODcyNjgwMDYsImV4cCI6MTY4NzM1NDQwNn0.C-ZoplEOQC7UGcAJEMmTxe2_ZTqSo7srXJnjsA3ER2U",
 			"type": "default"
 		}
 	]

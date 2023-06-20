@@ -13,11 +13,12 @@ const { initDatabase } = require('./database/databaseConnector');
 initDatabase();
 
 // Importation des Routes
+const path = require('path')
+app.use(express.static(__dirname+'/public')); 
 
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept , authorization ");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -32,6 +33,7 @@ let port = process.env.PORT || 8010;
 
 // les routes
 const prefix = '/api';
+const image = '/image';
 
 
 app.get('/',(req,res) => {
@@ -42,6 +44,7 @@ app.use(`${prefix}/assignments`,assignementRoutes);
 app.use(`${prefix}/matiere`,matiereRoutes);
 app.use(`${prefix}/auteur`,auteurRoutes);
 app.use(`${prefix}/auth`,authRoutes);
+
   
 
 // On démarre le serveur

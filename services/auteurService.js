@@ -2,6 +2,13 @@
 
 
 let Auteur = require('../model/auteur');
+const multer = require("multer");
+const fs =  require('fs');
+const path =  require('path');
+
+
+
+
 
 // Récupérer tous les assignments (GET)
 function getAuteurs() {
@@ -86,4 +93,29 @@ function deleteAuteur(id) {
 
 
 
-module.exports = { getAuteurs,getAuteursPaginate,getAuteurById,saveAuteur,updateAuteur,deleteAuteur };
+function getMulterAuteur() {
+    const path = './img/auteur';
+
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path, { recursive: true })
+    }
+
+    return multer({ dest: path });
+} 
+
+async function uploadImageAuteur(file,idAuteur){
+    // Exemple : renommer le fichier
+    const originalFileName = file.originalname;
+
+    const fileExtension = path.extname(originalFileName);
+    const newFileName = file.filename + `_${idAuteur}` + fileExtension;
+    const newPath = path.join(file.destination, newFileName);
+
+    await updateAuteur(idAuteur,{ image:newPath })
+
+    fs.renameSync(file.path, newPath);
+}
+
+
+
+module.exports = { getAuteurs,getAuteursPaginate,getAuteurById,saveAuteur,updateAuteur,deleteAuteur,getMulterAuteur,uploadImageAuteur };

@@ -1,6 +1,12 @@
 
 
 let Matiere = require('../model/matiere');
+const fs =  require('fs');
+const multer = require("multer");
+const path =  require('path');
+
+
+
 
 // Récupérer tous les assignments (GET)
 function getMatieres() {
@@ -29,7 +35,7 @@ function getMatiereById(matiereId) {
 function saveMatiere(matiereBody) {
     let matiere = new Matiere();
     matiere.nom = matiereBody.nom;
-    matiere.prof.nom = matiereBody.prof.nom;
+    matiere.nomProf = matiereBody.nomProf;
     return new Promise((resolve,reject) => {
         matiere.save((err) => {
             if (err) {
@@ -65,5 +71,44 @@ function deleteMatiere(id) {
 }
 
 
+function getMulter(path) {
+    // const path = '.public/img/matiere';
 
-module.exports = { getMatieres,getMatiereById,saveMatiere,updateMatiere,deleteMatiere };
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path, { recursive: true })
+    }
+
+    return multer({ dest: path });
+} 
+
+async function uploadImageMatiere(file,idMatiere){
+    // Exemple : renommer le fichier
+    const originalFileName = file.originalname;
+
+    const fileExtension = path.extname(originalFileName);
+    const newFileName = file.filename + `_${idMatiere}` + fileExtension;
+    const newPath = path.join(file.destination, newFileName);
+    console.log("newPath",newPath);
+    await updateMatiere(idMatiere,{ image:newPath })
+
+    fs.renameSync(file.path, newPath);
+}
+
+async function uploadImageProfesseur(file,idMatiere){
+    // Exemple : renommer le fichier
+    const originalFileName = file.originalname;
+
+    const fileExtension = path.extname(originalFileName);
+    const newFileName = file.filename + `_prof_${idMatiere}` + fileExtension;
+    const newPath = path.join(file.destination, newFileName);
+
+    await updateMatiere(idMatiere,{ photoProf:newPath } )
+
+    fs.renameSync(file.path, newPath);
+}
+
+
+
+
+
+module.exports = { getMatieres,getMatiereById,saveMatiere,updateMatiere,deleteMatiere,getMulter,uploadImageMatiere,uploadImageProfesseur };
