@@ -1,6 +1,6 @@
 # README
 
-Ce fichier Readme fournit les instructions nécessaires pour lancer une application Node.js.
+Ce fichier Readme fournit les instructions nécessaires pour lancer le BO de l'application sur votre local.
 
 ## Prérequis
 
