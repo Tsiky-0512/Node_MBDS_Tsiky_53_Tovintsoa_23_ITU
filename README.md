@@ -47,6 +47,8 @@ node server.js
 
 L'application sera alors exécutée et sera accessible à l'adresse `http://localhost:8010` dans votre navigateur.
 
-## Documentation
+## API 
+| URL        | Type  | Déscription  |
+| [http://localhost:8010/api/auth/login](http://localhost:8010/api/auth/login)	| Authentification	| POST
 
 Pour plus d'informations sur l'utilisation de l'application et les fonctionnalités disponibles, veuillez vous référer à la documentation fournie.
