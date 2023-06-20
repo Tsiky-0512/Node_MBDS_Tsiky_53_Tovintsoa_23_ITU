@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const assignementRoutes = require("./routes/assignementRoute");
 const authRoutes = require("./routes/authRoute");
 const matiereRoutes = require('./routes/matiereRoute');
+const auteurRoutes = require('./routes/auteurRoute');
 const { initDatabase } = require('./database/databaseConnector');
 
 
@@ -16,7 +17,9 @@ initDatabase();
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept , authorization ");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
@@ -32,6 +35,7 @@ const prefix = '/api';
 
 app.use(`${prefix}/assignments`,assignementRoutes);
 app.use(`${prefix}/matiere`,matiereRoutes);
+app.use(`${prefix}/auteur`,auteurRoutes);
 app.use(`${prefix}/auth`,authRoutes);
   
 
