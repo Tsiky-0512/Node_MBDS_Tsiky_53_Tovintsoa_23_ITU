@@ -8,7 +8,8 @@ let AssignmentSchema = Schema({
     rendu: Boolean,
     note:Number,
     remarques:String,
-    auteurId:Number
+    auteurId:String,
+    matiereId:String
 });
 
 AssignmentSchema.plugin(aggregatePaginate);

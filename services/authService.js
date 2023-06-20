@@ -44,7 +44,7 @@ const saveUser = async (userBody) => {
             })
         })
     } catch (error) {
-        throw `ATOOOO Error : ${error}`;
+        throw ` Error : ${error}`;
     }
 }
 

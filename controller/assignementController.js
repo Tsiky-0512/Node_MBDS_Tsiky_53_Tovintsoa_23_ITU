@@ -1,4 +1,5 @@
 let Assignment = require('../model/assignment');
+let assignementService = require('../services/assignementService');
 
 // Récupérer tous les assignments (GET)
 function getAssignmentsSansPagination(req, res) {
@@ -19,11 +20,19 @@ function getAssignments(req, res) {
             page: parseInt(req.query.page) || 1,
             limit: parseInt(req.query.limit) || 10,
         },
-        (err, assignments) => {
+        async (err, assignments) => {
             if (err) {
-                res.send(err);
+                res.send({
+                    data:error.message,
+                    status:400
+                });
             }
-            res.send(assignments);
+            const result = await assignementService.getDetailsAssignementsList(assignments?.docs);
+
+            res.send({
+                data:result,
+                status:200
+            });
         }
     );
 }
@@ -41,17 +50,18 @@ function getAssignment(req, res) {
 // Ajout d'un assignment (POST)
 function postAssignment(req, res) {
     let assignment = new Assignment();
-    assignment.id = req.body.id;
-    assignment.nom = req.body.nom;
-    assignment.dateDeRendu = req.body.dateDeRendu;
-    assignment.rendu = req.body.rendu;
+    assignment.id = req.body?.id;
+    assignment.nom = req.body?.nom;
+    assignment.dateDeRendu = req.body?.dateDeRendu;
+    assignment.matiereId = req.body?.matiereId;
+    assignment.auteurId = req.body?.auteurId;
 
     console.log("POST assignment reçu :");
     console.log(assignment)
 
     assignment.save((err) => {
         if (err) {
-            res.send('cant post assignment ', err);
+            res.send({data:err.message,status:400});
         }
         res.json({ message: `${assignment.nom} saved!` })
     })
