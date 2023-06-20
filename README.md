@@ -32,7 +32,10 @@ npm install
 ## Configuration
 
 Aucune configuration n'est requise. L'url du serveur de BDD : 
+
+```
 mongodb+srv://mb:toto@cluster0.5e6cs7n.mongodb.net/assignments?retryWrites=true&w=majority
+```
 
 ## Exécution
 
