@@ -28,7 +28,6 @@ function getAssignments(req, res) {
                 });
             }
             const result = await assignementService.getDetailsAssignementsList(assignments?.docs);
-            console.log(result);
             const response = {
                 data:result ,
                 totalDocs : assignments?.totalDocs || 0,
@@ -63,28 +62,27 @@ function postAssignment(req, res) {
     assignment.matiereId = req.body?.matiereId;
     assignment.auteurId = req.body?.auteurId;
 
-    console.log("POST assignment reçu :");
-    console.log(assignment)
 
     assignment.save((err) => {
         if (err) {
             res.send({data:err.message,status:400});
         }
-        res.json({ message: `${assignment.nom} saved!` })
+        res.json({ message: `${assignment.nom} saved!` ,status:200 })
     })
 }
 
 // Update d'un assignment (PUT)
 function updateAssignment(req, res) {
-    console.log("UPDATE recu assignment : ");
-    console.log(req.body);
 
     Assignment.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, assignmentUpdated) => {
         if (err) {
             console.log(err);
-            res.send(err)
+            res.send(err);
         } else {
-            res.json({ message: assignmentUpdated?.nom + 'updated' })
+            if (assignmentUpdated == null) {
+                res.json({ message: 'Content not found',status:200 })
+            }
+            res.json({ message: assignmentUpdated?.nom + ' updated',status:200 })
         }
 
         // console.log('updated ', assignment)
@@ -99,7 +97,7 @@ function deleteAssignment(req, res) {
         if (err) {
             res.send(err);
         }
-        res.json({ message: `${assignment.nom} deleted` });
+        res.json({ message: `${assignment.nom} deleted` , status:200 });
     })
 }
 

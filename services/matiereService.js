@@ -33,7 +33,6 @@ function saveMatiere(matiereBody) {
     return new Promise((resolve,reject) => {
         matiere.save((err) => {
             if (err) {
-                console.log("DZEDFEz");
                 reject(`cant save matiere ${err}`, );
             }
             resolve(`${matiere.nom} saved!`);
@@ -58,7 +57,6 @@ function deleteMatiere(id) {
     return new Promise((resolve,reject) => {
         Matiere.findByIdAndRemove(id, (err, assignment) => {
             if (err) {
-                console.log("ADEFZE");
                 reject(err);
             }
             resolve(`${assignment.nom} deleted`);
