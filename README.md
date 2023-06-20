@@ -62,16 +62,16 @@ L'application sera alors exécutée et sera accessible à l'adresse `http://loca
 | [http://localhost:8010/api/assignments/{id}](http://localhost:8010/api/assignments/{id})	| Effacer assignement	| DELETE
 | [http://localhost:8010/api/assignments/{id}](http://localhost:8010/api/assignments/{id})	| Rechercher par id d'un assignement| GET
 
-## API Matiere
+## API Matière
 | URL        | Déscription   | Type  |
 | ------|-----|-----|
-| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Enregistré une Matiere	| POST
-| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Liste  Matiere	| GET
-| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Modification d'une Matiere	| PUT
-| [http://localhost:8010/api/matiere/{id}](http://localhost:8010/api/matiere/{id})	| Effacer une Matiere	| DELETE
+| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Enregistré une Matière	| POST
+| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Liste  Matière	| GET
+| [http://localhost:8010/api/matiere](http://localhost:8010/api/matiere)	| Modification d'une Matière	| PUT
+| [http://localhost:8010/api/matiere/{id}](http://localhost:8010/api/matiere/{id})	| Effacer une Matière	| DELETE
 
 
-## API AUteur
+## API Auteur
 | URL        | Déscription   | Type  |
 | ------|-----|-----|
 | [http://localhost:8010/api/auteur](http://localhost:8010/api/auteur)	| Enregistré un auteur	| POST
