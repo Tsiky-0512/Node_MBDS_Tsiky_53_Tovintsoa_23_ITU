@@ -52,8 +52,8 @@ function getAssignment(req, res) {
         const result = await assignementService.getDetailsAssignement(assignment);
         const response = {
             assignment,
-            matiere:result.matieres,
-            auteur:result.auteurs
+            matiere:result.matieres[0] || {},
+            auteur:result.auteurs[0] || {}
         }
         res.json({
             data:response,
