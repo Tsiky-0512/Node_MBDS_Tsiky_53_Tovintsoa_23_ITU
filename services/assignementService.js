@@ -31,4 +31,23 @@ const getDetailsAssignementsList = async (assignementList) => {
     }
 }
 
-module.exports = { getDetailsAssignementsList };
+
+const getDetailsAssignement = async (assignement) => {
+    try {
+
+        // Récupérer les détails de matières et d'auteurs correspondants aux IDs
+        const [matieres, auteurs] = await Promise.all([
+            Matiere.find({ _id: { $in: assignement?.matiereId } }),
+            Auteur.find({ _id: { $in: assignement?.auteurId } })
+        ]);
+
+        return {
+            ...assignement,
+            matieres,
+            auteurs,
+        };
+    } catch (error) {
+        throw error;
+    }
+}
+module.exports = { getDetailsAssignementsList,getDetailsAssignement };

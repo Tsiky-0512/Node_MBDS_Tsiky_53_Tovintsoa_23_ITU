@@ -18,7 +18,7 @@ function getAssignments(req, res) {
     Assignment.aggregatePaginate(aggregateQuery,
         {
             page: parseInt(req.query.page) || 1,
-            limit: parseInt(req.query.limit) || 10,
+            limit: parseInt(req.query.limit) || 6,
         },
         async (err, assignments) => {
             if (err) {
@@ -47,9 +47,18 @@ function getAssignments(req, res) {
 function getAssignment(req, res) {
     let assignmentId = req.params.id;
 
-    Assignment.findOne({ _id: assignmentId }, (err, assignment) => {
+    Assignment.findOne({ _id: assignmentId }, async (err, assignment) => {
         if (err) { res.send(err) }
-        res.json(assignment);
+        const result = await assignementService.getDetailsAssignement(assignment);
+        const response = {
+            assignment,
+            matiere:result.matieres,
+            auteur:result.auteurs
+        }
+        res.json({
+            data:response,
+            status:200
+        });
     })
 }
 
